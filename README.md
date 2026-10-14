@@ -25,14 +25,14 @@ PolitaGuia/
 │       ├── motor.js         ← busca la pregunta más parecida (entiende errores y sinónimos)
 │       ├── chat.js
 │       └── voz.js           ← lectura en voz alta (gratis, voz del navegador)
-├── functions/api/chat.js    ← (opcional) modo IA: llama a Claude con la API key secreta
+├── opcional-ia/            ← (desactivado) modo IA con Claude; ver opcional-ia/LEEME.md
 ├── wrangler.toml            ← configuración de Cloudflare Pages
 └── .dev.vars.example        ← ejemplo para guardar la API key en tu computador
 ```
 
 - **Hosting:** Cloudflare Pages (gratis) + Pages Functions para el chat.
 - **Asistente:** responde desde la base de preguntas de `preguntas.js`. **Es gratis y no necesita API.** Entiende errores de escritura ("alr" → ARL), palabras coloquiales ("plata", "me echaron", "camello") y, si no está segura, sugiere preguntas parecidas.
-- **Modo IA (opcional):** si algún día tienen créditos de la API de Anthropic, se activa con `USAR_IA = true` en `public/js/chat.js` (usa Claude Haiku 5.5).
+- **Modo IA (opcional):** si algún día tienen créditos de la API de Anthropic, se activa siguiendo `opcional-ia/LEEME.md` (usa Claude Haiku 5.5).
 - **Audio:** la voz del navegador (Web Speech API). No cuesta nada.
 
 ## Mejorar las respuestas de Polita
@@ -66,7 +66,7 @@ La ARL te...",   // respuesta (
 | Poner el video de bienvenida | Pegar el ID en `VIDEO_BIENVENIDA` dentro de `public/index.html`. |
 | Agregar el quiz | Copiar `mis-derechos-en-el-trabajo.html` a `public/` y enlazarlo desde `public/quiz.html`. |
 | Cambiar la imagen de Polita | Reemplazar `public/img/polita.jpg` (imagen completa) y `public/img/polita-cara.jpg` (cara, cuadrada) con el mismo nombre. |
-| Activar el modo IA | Comprar créditos en console.anthropic.com, configurar la llave y poner `USAR_IA = true` en `public/js/chat.js`. |
+| Activar el modo IA | Seguir los pasos de `opcional-ia/LEEME.md`. |
 
 ## Probar en tu computador
 

@@ -1,7 +1,7 @@
 // Chat "Pregúntale a Polita".
 // Por defecto responde con la base de preguntas (preguntas.js + motor.js): gratis y sin internet.
 // Si algún día tienen créditos de la API de Anthropic, cambien USAR_IA a true y
-// configuren la llave (ver README); entonces Polita responde con IA.
+// sigan los pasos de opcional-ia/LEEME.md; entonces Polita responde con IA.
 import { capitulos } from "./contenido.js";
 import { responder, preguntasDelCapitulo } from "./motor.js";
 import { botonEscuchar } from "./voz.js";

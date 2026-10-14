@@ -2,7 +2,7 @@
 // la respuesta en lectura fácil, palabra por palabra (streaming).
 // La API key vive aquí como secreto de Cloudflare; el navegador nunca la ve.
 import Anthropic from "@anthropic-ai/sdk";
-import { capitulos, capituloATexto } from "../../public/js/contenido.js";
+import { capitulos, capituloATexto } from "../../../public/js/contenido.js";
 
 const MODELO_POR_DEFECTO = "claude-haiku-5-5";
 const MAX_MENSAJES = 12; // últimos mensajes de la conversación que se envían
