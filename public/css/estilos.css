@@ -1,0 +1,179 @@
+/* Polita Te Guía — estilos accesibles: letra grande, alto contraste, botones grandes */
+:root {
+  --morado: #5b2a86;
+  --morado-claro: #efe6f7;
+  --amarillo: #ffc93c;
+  --amarillo-claro: #fff6dc;
+  --texto: #1f1a24;
+  --texto-suave: #4a4252;
+  --fondo: #fffdf8;
+  --blanco: #ffffff;
+  --borde: #d9cfe3;
+  --foco: #0057d9;
+  --radio: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 20px; }
+
+body {
+  margin: 0;
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.6;
+}
+
+a { color: var(--morado); }
+
+:focus-visible { outline: 4px solid var(--foco); outline-offset: 3px; border-radius: 6px; }
+
+.saltar {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--amarillo); padding: .5rem 1rem; z-index: 10;
+}
+.saltar:focus { left: 1rem; }
+
+/* Encabezado y menú */
+.encabezado {
+  background: var(--morado);
+  color: var(--blanco);
+  padding: .75rem 1rem;
+}
+.encabezado-interno {
+  max-width: 60rem; margin: 0 auto;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem;
+}
+.marca {
+  display: flex; align-items: center; gap: .6rem;
+  color: var(--blanco); text-decoration: none; font-weight: 700; font-size: 1.2rem;
+}
+.marca .avatar { width: 2.4rem; height: 2.4rem; font-size: 1.4rem; }
+.menu { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
+.menu a {
+  display: inline-block; padding: .45rem .8rem; border-radius: 999px;
+  color: var(--blanco); text-decoration: none; font-weight: 700; font-size: .9rem;
+}
+.menu a:hover, .menu a[aria-current="page"] { background: var(--amarillo); color: var(--texto); }
+
+main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+h1 { font-size: 1.8rem; line-height: 1.25; margin: .5rem 0 1rem; color: var(--morado); }
+h2 { font-size: 1.35rem; line-height: 1.3; margin: 0 0 .5rem; color: var(--morado); }
+p { margin: 0 0 .6rem; }
+ul { margin: .25rem 0 .6rem; padding-left: 1.4rem; }
+li { margin-bottom: .45rem; }
+
+.subtitulo { font-size: 1.15rem; color: var(--texto-suave); margin-top: -.5rem; }
+
+/* Polita */
+.avatar {
+  display: inline-grid; place-items: center; flex-shrink: 0;
+  width: 4.5rem; height: 4.5rem; border-radius: 50%;
+  background: var(--amarillo); font-size: 2.6rem; overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.globo {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--amarillo-claro); border: 2px solid var(--amarillo);
+  border-radius: var(--radio); padding: 1rem 1.1rem; margin: 1rem 0 1.5rem;
+}
+
+/* Tarjetas y botones */
+.tarjeta {
+  background: var(--blanco); border: 2px solid var(--borde);
+  border-radius: var(--radio); padding: 1.1rem 1.2rem; margin-bottom: 1rem;
+}
+
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 3rem; padding: .6rem 1.2rem; border-radius: 999px;
+  border: 3px solid var(--morado); background: var(--morado); color: var(--blanco);
+  font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+}
+.boton:hover { background: #47206a; }
+.boton.secundario { background: var(--blanco); color: var(--morado); }
+.boton.secundario:hover { background: var(--morado-claro); }
+.boton.pequeno { min-height: 2.4rem; padding: .3rem .9rem; font-size: .85rem; }
+.boton[aria-pressed="true"] { background: var(--amarillo); border-color: var(--amarillo); color: var(--texto); }
+
+.acciones { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+
+/* Lista de capítulos */
+.capitulos { list-style: none; padding: 0; display: grid; gap: .8rem; }
+.capitulos a {
+  display: flex; gap: 1rem; align-items: center;
+  background: var(--blanco); border: 2px solid var(--borde); border-radius: var(--radio);
+  padding: .9rem 1rem; text-decoration: none; color: var(--texto);
+}
+.capitulos a:hover { border-color: var(--morado); background: var(--morado-claro); }
+.capitulos .emoji { font-size: 2rem; }
+.capitulos .numero { font-size: .8rem; color: var(--texto-suave); font-weight: 700; display: block; }
+.capitulos .nombre { font-size: 1.1rem; font-weight: 700; color: var(--morado); display: block; }
+.capitulos .resumen { font-size: .9rem; color: var(--texto-suave); }
+
+/* Capítulo */
+.seccion-cabecera { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+.video {
+  position: relative; aspect-ratio: 16 / 9; background: var(--morado-claro);
+  border-radius: var(--radio); overflow: hidden; margin: .5rem 0;
+  display: grid; place-items: center; text-align: center; padding: 1rem;
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.navegacion-capitulos { display: flex; justify-content: space-between; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+/* Chat */
+.chat { display: flex; flex-direction: column; gap: .9rem; margin: 1rem 0; }
+.mensaje { display: flex; gap: .7rem; align-items: flex-start; }
+.mensaje .avatar { width: 2.6rem; height: 2.6rem; font-size: 1.5rem; }
+.mensaje .contenido {
+  border-radius: var(--radio); padding: .75rem 1rem; max-width: 100%;
+  background: var(--amarillo-claro); border: 2px solid var(--amarillo);
+}
+.mensaje .contenido ul { margin-bottom: 0; }
+.mensaje.usuario { justify-content: flex-end; }
+.mensaje.usuario .contenido { background: var(--morado); color: var(--blanco); border-color: var(--morado); }
+.mensaje .herramientas { margin-top: .5rem; }
+
+.sugerencias { display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 1rem; }
+.sugerencias button {
+  font: inherit; font-size: .9rem; cursor: pointer;
+  padding: .5rem .9rem; border-radius: 999px;
+  border: 2px solid var(--morado); background: var(--blanco); color: var(--morado);
+}
+.sugerencias button:hover { background: var(--morado-claro); }
+
+.formulario-chat {
+  position: sticky; bottom: 0; background: var(--fondo);
+  padding: .75rem 0; display: flex; gap: .6rem; align-items: flex-end;
+  border-top: 2px solid var(--borde);
+}
+.formulario-chat textarea {
+  flex: 1; font: inherit; padding: .7rem .9rem; min-height: 3rem; resize: vertical;
+  border: 3px solid var(--borde); border-radius: 14px; background: var(--blanco);
+}
+.formulario-chat textarea:focus { border-color: var(--morado); outline: none; }
+
+.escribiendo::after { content: "Polita está escribiendo…"; color: var(--texto-suave); font-style: italic; }
+
+.aviso { font-size: .8rem; color: var(--texto-suave); }
+
+.pie { text-align: center; padding: 1.5rem 1rem; color: var(--texto-suave); font-size: .8rem; }
+
+@media (max-width: 520px) {
+  html { font-size: 18px; }
+  .globo { flex-direction: column; align-items: center; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+/* Imagen grande de Polita (bienvenida) */
+.polita-grande {
+  width: 10rem; height: auto; flex-shrink: 0;
+  border-radius: var(--radio); background: #e9d6b5;
+}
+.avatar { background: #e9d6b5; }

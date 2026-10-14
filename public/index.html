@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polita Te Guía</title>
+  <meta name="description" content="Tus derechos en el trabajo, fáciles de entender.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/polita-cara.jpg">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a class="marca" href="/"><span class="avatar" aria-hidden="true"><img src="/img/polita-cara.jpg" alt=""></span> Polita Te Guía</a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="/" aria-current="page">🏠 Inicio</a></li>
+          <li><a href="/capitulos">📚 Capítulos</a></li>
+          <li><a href="/chat">💬 Pregúntale a Polita</a></li>
+          <li><a href="/quiz">✅ Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <h1>Polita Te Guía</h1>
+    <p class="subtitulo">Tus derechos en el trabajo, fáciles de entender.</p>
+
+    <section class="globo" aria-label="Bienvenida de Polita">
+      <img class="polita-grande" src="/img/polita.jpg" alt="Polita, la guía de la página, saludando">
+      <div id="bienvenida">
+        <p><strong>¡Hola! Soy Polita.</strong></p>
+        <p>Te voy a acompañar a conocer tus derechos en el trabajo.</p>
+        <p>Vamos a aprender sobre tu contrato, tu sueldo, tu salud, tus ahorros y mucho más.</p>
+        <p>Si tienes dudas, puedes preguntarme cuando quieras.</p>
+        <div id="escuchar-bienvenida"></div>
+      </div>
+    </section>
+
+    <div class="video" id="video-bienvenida">
+      <p>🎬 Aquí irá el video de bienvenida de Polita.</p>
+    </div>
+
+    <h2>¿Qué quieres hacer?</h2>
+    <div class="acciones">
+      <a class="boton" href="/capitulos">📚 Aprender con los capítulos</a>
+      <a class="boton secundario" href="/chat">💬 Preguntarle a Polita</a>
+      <a class="boton secundario" href="/quiz">✅ Hacer el quiz</a>
+    </div>
+
+    <section class="tarjeta" aria-labelledby="consejos">
+      <h2 id="consejos">Consejos para usar la página</h2>
+      <ul>
+        <li>Lee un capítulo a la vez. No tienes que leer todo el mismo día.</li>
+        <li>Presiona <strong>🔊 Escuchar</strong> si prefieres oír el texto.</li>
+        <li>Mira los videos de Polita con ejemplos.</li>
+        <li>Al final, haz el quiz para ver lo que aprendiste.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Polita Te Guía · Universidad Pedagógica Nacional · Licenciatura en Educación Especial · Best Buddies Colombia
+  </footer>
+
+  <script type="module">
+    import { botonEscuchar } from "/js/voz.js";
+    // Cambia este valor por el ID del video de YouTube (lo que va después de "v=" en el enlace).
+    const VIDEO_BIENVENIDA = "";
+
+    const bienvenida = document.getElementById("bienvenida");
+    document.getElementById("escuchar-bienvenida").append(
+      botonEscuchar(() => [...bienvenida.querySelectorAll("p")].map((p) => p.textContent).join(" "))
+    );
+
+    if (VIDEO_BIENVENIDA) {
+      document.getElementById("video-bienvenida").innerHTML =
+        `<iframe src="https://www.youtube-nocookie.com/embed/${VIDEO_BIENVENIDA}" title="Video de bienvenida de Polita" allowfullscreen></iframe>`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+name = "politateguia"
+pages_build_output_dir = "public"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Modelo de Claude que usa "Pregúntale a Polita".
+MODELO = "claude-haiku-5-5"

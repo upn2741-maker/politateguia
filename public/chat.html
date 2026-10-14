@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pregúntale a Polita · Polita Te Guía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/polita-cara.jpg">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#pregunta">Ir a escribir una pregunta</a>
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a class="marca" href="/"><span class="avatar" aria-hidden="true"><img src="/img/polita-cara.jpg" alt=""></span> Polita Te Guía</a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="/">🏠 Inicio</a></li>
+          <li><a href="/capitulos">📚 Capítulos</a></li>
+          <li><a href="/chat" aria-current="page">💬 Pregúntale a Polita</a></li>
+          <li><a href="/quiz">✅ Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <h1>💬 Pregúntale a Polita</h1>
+    <p class="aviso">Polita responde con la información de esta página. Si tienes un problema importante en tu trabajo, habla también con tu familia, tu jefe o Best Buddies. <a href="/preguntas">Ver todas las preguntas</a></p>
+
+    <div class="chat" id="chat" aria-live="polite"></div>
+
+    <p><strong>Puedes preguntar, por ejemplo:</strong></p>
+    <div class="sugerencias" id="sugerencias"></div>
+
+    <form class="formulario-chat" id="formulario">
+      <label for="pregunta" class="saltar">Escribe tu pregunta</label>
+      <textarea id="pregunta" rows="2" maxlength="500" placeholder="Escribe tu pregunta aquí…"></textarea>
+      <button class="boton" type="submit" id="enviar">Enviar ➤</button>
+    </form>
+  </main>
+
+  <script type="module" src="/js/chat.js"></script>
+</body>
+</html>

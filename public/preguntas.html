@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todas las preguntas · Polita Te Guía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/polita-cara.jpg">
+  <link rel="stylesheet" href="/css/estilos.css">
+  <style>
+    details { background: var(--blanco); border: 2px solid var(--borde); border-radius: 14px; margin-bottom: .6rem; }
+    details[open] { border-color: var(--morado); }
+    summary { cursor: pointer; padding: .8rem 1rem; font-weight: 700; color: var(--morado); }
+    details > div { padding: 0 1rem 1rem; }
+    .revisar { display: inline-block; background: #ffe1e1; color: #8a1c1c; border-radius: 999px; padding: .1rem .6rem; font-size: .75rem; margin-left: .4rem; }
+    .grupo { margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a class="marca" href="/"><span class="avatar" aria-hidden="true"><img src="/img/polita-cara.jpg" alt=""></span> Polita Te Guía</a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="/">🏠 Inicio</a></li>
+          <li><a href="/capitulos">📚 Capítulos</a></li>
+          <li><a href="/chat">💬 Pregúntale a Polita</a></li>
+          <li><a href="/quiz">✅ Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <h1>❓ Todas las preguntas</h1>
+    <p>Toca una pregunta para ver la respuesta de Polita.</p>
+    <div id="lista"></div>
+  </main>
+
+  <footer class="pie">Polita Te Guía · Best Buddies Colombia</footer>
+
+  <script type="module">
+    import { preguntas } from "/js/preguntas.js";
+    import { capitulos } from "/js/contenido.js";
+    import { botonEscuchar } from "/js/voz.js";
+
+    // Con /preguntas?revisar=1 se marcan las respuestas con información general
+    // (no viene del documento) para que el equipo las revise.
+    const revisar = new URLSearchParams(location.search).has("revisar");
+    const lista = document.getElementById("lista");
+    const grupos = [{ id: 0, emoji: "💬", titulo: "Sobre Polita y la página" }, ...capitulos];
+
+    for (const g of grupos) {
+      const delGrupo = preguntas.filter((q) => q.c === g.id);
+      if (!delGrupo.length) continue;
+      const seccion = document.createElement("section");
+      seccion.className = "grupo";
+      const h2 = document.createElement("h2");
+      h2.textContent = `${g.emoji} ${g.id ? `Capítulo ${g.id}: ` : ""}${g.titulo}`;
+      seccion.append(h2);
+
+      for (const q of delGrupo) {
+        const d = document.createElement("details");
+        const s = document.createElement("summary");
+        s.textContent = q.p;
+        if (revisar && q.g) s.insertAdjacentHTML("beforeend", '<span class="revisar">revisar: info general</span>');
+        const cuerpo = document.createElement("div");
+        for (const linea of q.r.split("\n")) {
+          const p = document.createElement("p");
+          p.textContent = linea;
+          cuerpo.append(p);
+        }
+        cuerpo.append(botonEscuchar(() => q.r));
+        d.append(s, cuerpo);
+        seccion.append(d);
+      }
+      lista.append(seccion);
+    }
+  </script>
+</body>
+</html>

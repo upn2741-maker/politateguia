@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulos · Polita Te Guía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/polita-cara.jpg">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a class="marca" href="/"><span class="avatar" aria-hidden="true"><img src="/img/polita-cara.jpg" alt=""></span> Polita Te Guía</a>
+      <nav aria-label="Menú principal">
+        <ul class="menu">
+          <li><a href="/">🏠 Inicio</a></li>
+          <li><a href="/capitulos" aria-current="page">📚 Capítulos</a></li>
+          <li><a href="/chat">💬 Pregúntale a Polita</a></li>
+          <li><a href="/quiz">✅ Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <h1>📚 Capítulos</h1>
+    <p>Escoge un capítulo para empezar.</p>
+    <ul class="capitulos" id="lista"></ul>
+  </main>
+
+  <footer class="pie">Polita Te Guía · Best Buddies Colombia</footer>
+
+  <script type="module">
+    import { capitulos } from "/js/contenido.js";
+    const lista = document.getElementById("lista");
+    for (const c of capitulos) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <a href="/capitulo?id=${c.id}">
+          <span class="emoji" aria-hidden="true">${c.emoji}</span>
+          <span>
+            <span class="numero">Capítulo ${c.id}</span>
+            <span class="nombre">${c.titulo}</span>
+            <span class="resumen">${c.resumen}</span>
+          </span>
+        </a>`;
+      lista.append(li);
+    }
+  </script>
+</body>
+</html>
