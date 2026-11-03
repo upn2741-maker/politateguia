@@ -70,13 +70,13 @@ function enfocarTitulo() {
 
 // ---------- pantalla 1: lista de quizzes ----------
 function mostrarLista() {
-  document.title = "Quiz · Polita Te Guía";
+  document.title = "Prueba qué tanto sabes · Polita Te Guía";
   limpiarPantalla();
   const progreso = leerProgreso();
   const hechos = capitulos.filter((c) => progreso[c.id]).length;
 
   main.append(
-    el("h1", { textContent: "✅ Quiz: ¿qué aprendí?" }),
+    el("h1", { textContent: "✅ Prueba qué tanto sabes" }),
     polita(
       el("p", { textContent: "¡Hola! Aquí no hay notas ni exámenes." }),
       el("p", { textContent: "Son preguntas para que veas cuánto entendiste. Si algo no te queda claro, yo te lo recuerdo." }),
@@ -121,7 +121,7 @@ function mostrarLista() {
 
 // ---------- pantalla 2: preguntas de un capítulo ----------
 function iniciarQuiz(cap, preguntas, esRepaso = false) {
-  document.title = `Quiz: ${cap.titulo} · Polita Te Guía`;
+  document.title = `Prueba qué tanto sabes: ${cap.titulo} · Polita Te Guía`;
   const total = preguntas.length;
   let actual = 0;
   const falladas = [];
@@ -195,6 +195,13 @@ function iniciarQuiz(cap, preguntas, esRepaso = false) {
       retro.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
+    // Lo que se lee en voz alta: la pregunta y cada opción, en el mismo orden en que se ven.
+    const textoParaVoz = () => {
+      if (p.fijo) return `${p.q}. ¿Verdadero o falso?`;
+      const lista = orden.map((op, i) => `Opción ${"ABC"[i]}. ${op.texto}.`).join(" ");
+      return `${p.q}. ${lista}`;
+    };
+
     const grupo = el("div", { className: "opciones" });
     grupo.setAttribute("role", "group");
     grupo.setAttribute("aria-label", "Opciones de respuesta");
@@ -215,7 +222,7 @@ function iniciarQuiz(cap, preguntas, esRepaso = false) {
         "section",
         { className: "tarjeta pregunta" },
         el("p", { className: "enunciado", textContent: p.q }),
-        el("div", { className: "acciones" }, botonEscuchar(() => p.q, "🔊 Escuchar la pregunta")),
+        el("div", { className: "acciones" }, botonEscuchar(textoParaVoz, "🔊 Escuchar la pregunta y las opciones")),
         grupo
       ),
       retro
@@ -291,14 +298,14 @@ function iniciarQuiz(cap, preguntas, esRepaso = false) {
     const otra = el("button", {
       type: "button",
       className: falladas.length ? "boton secundario" : "boton",
-      textContent: "🔁 Hacer el quiz otra vez",
+      textContent: "🔁 Hacer la prueba otra vez",
     });
     otra.addEventListener("click", () => iniciarQuiz(cap, quizzes[cap.id]));
     acciones.append(otra);
 
     const sig = capitulos.find((c) => c.id === cap.id + 1);
-    if (sig) acciones.append(el("a", { className: "boton secundario", href: `/quiz?id=${sig.id}`, textContent: `${sig.emoji} Quiz del capítulo ${sig.id}` }));
-    acciones.append(el("a", { className: "boton secundario", href: "/quiz", textContent: "📋 Todos los quizzes" }));
+    if (sig) acciones.append(el("a", { className: "boton secundario", href: `/quiz?id=${sig.id}`, textContent: `${sig.emoji} Prueba del capítulo ${sig.id}` }));
+    acciones.append(el("a", { className: "boton secundario", href: "/quiz", textContent: "📋 Todas las pruebas" }));
     main.append(acciones);
     enfocarTitulo();
   }
@@ -308,7 +315,7 @@ function iniciarQuiz(cap, preguntas, esRepaso = false) {
 
 // ---------- pantalla de entrada de un capítulo ----------
 function mostrarEntrada(cap) {
-  document.title = `Quiz: ${cap.titulo} · Polita Te Guía`;
+  document.title = `Prueba qué tanto sabes: ${cap.titulo} · Polita Te Guía`;
   limpiarPantalla();
   const preguntas = quizzes[cap.id];
   const comenzar = el("button", { type: "button", className: "boton", textContent: "▶ Empezar" });
@@ -325,7 +332,7 @@ function mostrarEntrada(cap) {
       { className: "acciones" },
       comenzar,
       el("a", { className: "boton secundario", href: `/capitulo?id=${cap.id}`, textContent: "📖 Leer el capítulo primero" }),
-      el("a", { className: "boton secundario", href: "/quiz", textContent: "📋 Todos los quizzes" })
+      el("a", { className: "boton secundario", href: "/quiz", textContent: "📋 Todas las pruebas" })
     )
   );
   enfocarTitulo();
