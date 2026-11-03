@@ -36,8 +36,8 @@ if (!c) {
     el("div", { className: "acciones" }, botonEscuchar(() => capituloATexto(c), "🔊 Escuchar todo el capítulo"))
   );
 
-  for (const s of c.secciones) {
-    const tarjeta = el("section", { className: "tarjeta" });
+  c.secciones.forEach((s, n) => {
+    const tarjeta = el("section", { className: "tarjeta", id: `seccion-${n}` });
     const texto = [s.titulo, ...(s.texto || []), ...(s.lista || [])].join(". ");
     tarjeta.append(
       el("div", { className: "seccion-cabecera" }, el("h2", { textContent: s.titulo }), botonEscuchar(() => texto)),
@@ -45,7 +45,7 @@ if (!c) {
     );
     if (s.lista) tarjeta.append(el("ul", {}, ...s.lista.map(itemLista)));
     main.append(tarjeta);
-  }
+  });
 
   // Video de Polita
   const video = el("div", { className: "video" });
@@ -81,6 +81,24 @@ if (!c) {
     )
   );
 
+  // Quiz del capítulo
+  main.append(
+    el(
+      "section",
+      { className: "tarjeta" },
+      el("h2", { textContent: "✅ ¿Qué entendiste?" }),
+      el("p", { textContent: "Responde unas preguntas cortas. No hay nota: Polita te ayuda a repasar." }),
+      el("a", { className: "boton", href: `/quiz?id=${c.id}`, textContent: "✅ Hacer el quiz de este capítulo" })
+    )
+  );
+
+  // Si vienes del quiz, te llevamos a la parte que conviene repasar.
+  const destino = location.hash && document.querySelector(location.hash);
+  if (destino) {
+    destino.scrollIntoView();
+    destino.classList.add("seccion-destacada");
+  }
+
   // Anterior / siguiente
   const anterior = capitulos[indice - 1];
   const siguiente = capitulos[indice + 1];
@@ -93,7 +111,7 @@ if (!c) {
         : el("span"),
       siguiente
         ? el("a", { className: "boton", href: `/capitulo?id=${siguiente.id}`, textContent: `${siguiente.titulo} ➡` })
-        : el("a", { className: "boton", href: "/quiz", textContent: "✅ Ir al quiz ➡" })
+        : el("a", { className: "boton", href: "/quiz", textContent: "✅ Ir a los quizzes ➡" })
     )
   );
 }
