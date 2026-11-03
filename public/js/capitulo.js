@@ -88,7 +88,7 @@ if (!c) {
       { className: "tarjeta" },
       el("h2", { textContent: "✅ ¿Qué entendiste?" }),
       el("p", { textContent: "Responde unas preguntas cortas. No hay nota: Polita te ayuda a repasar." }),
-      el("a", { className: "boton", href: `/quiz?id=${c.id}`, textContent: "✅ Hacer el quiz de este capítulo" })
+      el("a", { className: "boton", href: `/quiz?id=${c.id}`, textContent: "✅ Prueba qué tanto sabes de este capítulo" })
     )
   );
 
@@ -111,7 +111,7 @@ if (!c) {
         : el("span"),
       siguiente
         ? el("a", { className: "boton", href: `/capitulo?id=${siguiente.id}`, textContent: `${siguiente.titulo} ➡` })
-        : el("a", { className: "boton", href: "/quiz", textContent: "✅ Ir a los quizzes ➡" })
+        : el("a", { className: "boton", href: "/quiz", textContent: "✅ Prueba qué tanto sabes ➡" })
     )
   );
 }

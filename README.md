@@ -2,7 +2,7 @@
 
 **Tus derechos en el trabajo, fáciles de entender.**
 
-Sitio web para los amigos del alma de Best Buddies Colombia, con 9 capítulos en lectura fácil, lectura en voz alta, videos de Polita, un quiz y el asistente de IA **"Pregúntale a Polita"**.
+Sitio web para los amigos del alma de Best Buddies Colombia, con 9 capítulos en lectura fácil, lectura en voz alta, videos de Polita, una prueba por capítulo («Prueba qué tanto sabes») y el asistente de IA **"Pregúntale a Polita"**.
 
 Universidad Pedagógica Nacional · Licenciatura en Educación Especial
 
@@ -16,7 +16,7 @@ PolitaGuia/
 │   ├── capitulo.html        ← muestra un capítulo (capitulo?id=1 … 9)
 │   ├── chat.html            ← "Pregúntale a Polita"
 │   ├── preguntas.html       ← todas las preguntas y respuestas (preguntas frecuentes)
-│   ├── quiz.html            ← quiz final (pendiente de agregar)
+│   ├── quiz.html            ← «Prueba qué tanto sabes» (una por capítulo)
 │   ├── css/estilos.css
 │   └── js/
 │       ├── contenido.js     ← ⭐ TODO el texto de los capítulos (editar aquí)
@@ -64,8 +64,8 @@ La ARL te...",   // respuesta (
 | Cambiar el texto de un capítulo | Editar `public/js/contenido.js`. El asistente usa el mismo texto automáticamente. |
 | Poner el video de un capítulo | Subir el video a YouTube como **no listado** y copiar su ID (lo que va después de `v=`) en `video.youtubeId` del capítulo en `contenido.js`. |
 | Poner el video de bienvenida | Pegar el ID en `VIDEO_BIENVENIDA` dentro de `public/index.html`. |
-| Agregar el quiz | Copiar `mis-derechos-en-el-trabajo.html` a `public/` y enlazarlo desde `public/quiz.html`. |
-| Cambiar la imagen de Polita | Reemplazar `public/img/polita.jpg` (imagen completa) y `public/img/polita-cara.jpg` (cara, cuadrada) con el mismo nombre. |
+| Cambiar las preguntas de «Prueba qué tanto sabes» | Editar `public/js/quiz-datos.js`. El formato está explicado al inicio del archivo. |
+| Cambiar la imagen de Polita | Reemplazar `public/img/polita.jpg` (cuerpo completo saludando) y `public/img/polita-cara.jpg` (cara, cuadrada) con el mismo nombre. La hoja original con todas las poses está en `public/img/polita-hoja.jpg`. |
 | Activar el modo IA | Seguir los pasos de `opcional-ia/LEEME.md`. |
 
 ## Probar en tu computador

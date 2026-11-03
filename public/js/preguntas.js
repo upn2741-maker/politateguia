@@ -31,10 +31,10 @@ export const preguntas = [
     r: "Presiona el botón 🔊 Escuchar.\nLa página lee el texto en voz alta.\nPara parar, presiona ⏹ Parar.",
   },
   {
-    c: 0, p: "¿Dónde está el quiz?",
-    v: ["quiero hacer el quiz", "evaluacion", "examen final", "preguntas para practicar", "prueba"],
-    k: ["quiz", "evaluacion"],
-    r: "El quiz está en el menú, en el botón ✅ Quiz.\nHazlo cuando termines de leer los capítulos.\nAsí ves todo lo que aprendiste.",
+    c: 0, p: "¿Dónde está «Prueba qué tanto sabes»?",
+    v: ["donde esta el quiz", "quiero hacer el quiz", "prueba que tanto sabes", "evaluacion", "examen final", "preguntas para practicar", "prueba"],
+    k: ["quiz", "evaluacion", "prueba"],
+    r: "«Prueba qué tanto sabes» está en el menú, en el botón ✅ Prueba qué tanto sabes.\nHazlo cuando termines de leer los capítulos.\nAsí ves todo lo que aprendiste.",
   },
   {
     c: 0, p: "¿Qué es Best Buddies?",
