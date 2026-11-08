@@ -76,7 +76,7 @@ if (!c) {
       "section",
       { className: "tarjeta" },
       el("h2", { textContent: "¿Tienes dudas?" }),
-      el("p", { textContent: "Pregúntale a Polita. Ella te responde con palabras fáciles." }),
+      el("p", { textContent: "Muy pronto Polita podrá responder tus preguntas con palabras fáciles." }),
       el("a", { className: "boton", href: `/chat?capitulo=${c.id}`, textContent: "💬 Pregúntale a Polita" })
     )
   );

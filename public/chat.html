@@ -25,18 +25,22 @@
 
   <main id="contenido">
     <h1>💬 Pregúntale a Polita</h1>
-    <p class="aviso">Polita responde con la información de esta página. Si tienes un problema importante en tu trabajo, habla también con tu familia, tu jefe o Best Buddies. <a href="/preguntas">Ver todas las preguntas</a></p>
+    <section class="globo" aria-label="Mensaje de Polita">
+      <span class="avatar" aria-hidden="true"><img src="/img/polita-cara.jpg" alt=""></span>
+      <div>
+        <p><strong>¡Hola! Todavía estoy aprendiendo a responder.</strong></p>
+        <p>Estamos trabajando en esta parte para que muy pronto puedas hacerme tus preguntas.</p>
+        <p>Mientras tanto, puedes leer los capítulos o probar qué tanto sabes.</p>
+        <div id="escuchar-aviso"></div>
+      </div>
+    </section>
 
-    <div class="chat" id="chat" aria-live="polite"></div>
+    <div class="acciones">
+      <a class="boton" href="/capitulos">📚 Leer los capítulos</a>
+      <a class="boton secundario" href="/quiz">✅ Prueba qué tanto sabes</a>
+    </div>
 
-    <p><strong>Puedes preguntar, por ejemplo:</strong></p>
-    <div class="sugerencias" id="sugerencias"></div>
-
-    <form class="formulario-chat" id="formulario">
-      <label for="pregunta" class="saltar">Escribe tu pregunta</label>
-      <textarea id="pregunta" rows="2" maxlength="500" placeholder="Escribe tu pregunta aquí…"></textarea>
-      <button class="boton" type="submit" id="enviar">Enviar ➤</button>
-    </form>
+    <p class="aviso">Si tienes un problema importante en tu trabajo, habla con tu familia, tu jefe o Best Buddies.</p>
   </main>
 
   <footer class="pie">
@@ -44,7 +48,11 @@
     Polita Te Guía · Best Buddies Colombia
   </footer>
 
-  <script type="module" src="/js/chat.js"></script>
+  <script type="module">
+    import { botonEscuchar } from "/js/voz.js";
+    document.getElementById("escuchar-aviso").append(botonEscuchar(
+      () => "Hola. Todavía estoy aprendiendo a responder. Estamos trabajando en esta parte para que muy pronto puedas hacerme tus preguntas."));
+  </script>
   <script type="module" src="/js/accesibilidad.js"></script>
 </body>
 </html>

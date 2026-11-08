@@ -3,7 +3,11 @@
 // (functions/api/chat.js), así el bot responde solo con esta información.
 // Si cambias algo aquí, cambia en los dos lugares.
 
-export const capitulos = [
+// Versión de demostración: solo se muestran estos capítulos (y su prueba).
+// Para mostrar más, agrega su número aquí. Para mostrar todos, usa null.
+const CAPITULOS_VISIBLES = [1, 2];
+
+const todosLosCapitulos = [
   {
     id: 1,
     emoji: "📝",
@@ -375,6 +379,10 @@ export const capitulos = [
     preguntas: ["¿Si renuncio pierdo mi dinero?", "¿Qué es la liquidación?", "¿Qué papeles me deben dar?"],
   },
 ];
+
+export const capitulos = CAPITULOS_VISIBLES
+  ? todosLosCapitulos.filter((c) => CAPITULOS_VISIBLES.includes(c.id))
+  : todosLosCapitulos;
 
 // Convierte un capítulo a texto plano (para leer en voz alta y para el asistente).
 export function capituloATexto(c) {
